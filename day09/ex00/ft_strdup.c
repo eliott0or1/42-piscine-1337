@@ -15,7 +15,7 @@ char	*ft_strdup(char *src)
 	char	*dest;
 	int	i = 0;
 	if (!(dest = (char *)malloc(sizeof(char) * ft_strlen(src) + 1)))
-		return NULL;
+		return (NULL);
 	while (src[i])
 	{
 		dest[i] = src[i];
@@ -26,7 +26,7 @@ char	*ft_strdup(char *src)
 int main()
 {
 	char	*src = "Hello World!";
-	char	*mine = NULL;
-	mine = ft_strdup(src);
-	printf("%s", mine);
+	char	*dest = NULL;
+	dest = ft_strdup(src);
+	printf("%s", dest);
 }
