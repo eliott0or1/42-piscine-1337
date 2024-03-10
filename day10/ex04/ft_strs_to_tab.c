@@ -7,20 +7,22 @@ int	ft_strlen(char	*string)
 
 	index = 0;
 	while (string[index])
+	{
 		index++;
+	}
 	return (index);
 }
 
-char	*strdup(char	*src)
+char	*ft_strdup(char	*src)
 {
 	int	index;
 	char	*dest;
 	char	*d;
 
-	index = 0;
-	d = (dest = (char *)malloc(sizeof(char) * ft_strlen(src) + 1));
+	d = (dest = (char *)malloc(sizeof(char) * (ft_strlen(src) + 1)));
 	if(!d)
-		return NULL;
+		return (0);
+	index = 0;
 	while (src[index])
 	{
 		dest[index] = src[index];
@@ -30,24 +32,34 @@ char	*strdup(char	*src)
 	return (dest);
 }
 
-struct s_stock_str *ft_strs_to_tab(int ac, char **av);
+struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 {
 	int	index;
 	struct s_stock_str	*array;
-	struct s_stock_str	*arr;
 
 	index = 0;
-	arr = (array = malloc((av + 1) * sizeof(struct s_stock_str)));
-	if (!arr)
+	array = (struct s_stock_str *)malloc((ac + 1)	* sizeof(struct s_stock_str));
+	if (!array)
 		return NULL;
 	while (index < ac)
 	{
 		array[index].size = ft_strlen(av[index]);
 		array[index].str = av[index];
 		array[index].copy = ft_strdup(av[index]);
+		if (!array[index].copy)
+		{
+			while (index >= 0)
+			{
+				free(array[index].copy);
+				index--;
+			}
+			free(array);
+			return NULL;
+		}
 		index++;
 	}
-	array[index].str[index] = 0;
-	array[index].copy[index] = 0;
-	return (array);
+	array[index].size = 0;
+	array[index].str = 0;
+	array[index].copy = 0;
+	return(array);
 }

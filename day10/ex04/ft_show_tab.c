@@ -20,7 +20,7 @@ char	*ft_strdup(char	*src)
 	char	*dest;
 	char	*d;
 
-	d = (dest = (char *)malloc(sizeof(char) * ft_strlen(src) + 1));
+	d = (dest = (char *)malloc(sizeof(char) * (ft_strlen(src) + 1)));
 	if(!d)
 		return (0);
 	index = 0;
@@ -37,10 +37,10 @@ struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 {
 	int	index;
 	struct s_stock_str	*array;
-	struct s_stock_str	*arr;
 
 	index = 0;
-	arr = (array = malloc((ac + 1) * sizeof(struct s_stock_str)));
+	array = (struct s_stock_str *)malloc((ac + 1) 
+			* sizeof(struct s_stock_str));
 	if (!array)
 		return NULL;
 	while (index < ac)
@@ -60,8 +60,9 @@ struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 		}
 		index++;
 	}
-	array[index].str[index] = 0;
-	array[index].copy[index] = 0;
+	array[index].size = 0;
+	array[index].str = 0;
+	array[index].copy = 0;
 	return(array);
 }
 
@@ -75,9 +76,10 @@ int	main(int argc, char **argv)
 	while (index < argc)
 	{
 		printf("%d\n", index);
+		printf("\t|   str : $%s$ @ %p\n", structs[index].str, structs[index].str);
 		printf("\t|   copied : $%s$ @ %p\n", structs[index].copy, structs[index].copy);
-		printf("\t|   copied : $%s$ @ %p\n", structs[index].copy, structs[index].copy);
-		printf("\t|     size : %d\n", structs[index].size);
+		free(structs[index].copy);
 		index++;
 	}
+	free(structs);
 }
