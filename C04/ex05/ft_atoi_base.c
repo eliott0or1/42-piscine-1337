@@ -1,5 +1,5 @@
-/* #include <unistd.h>
-   #include <stdio.h> */
+#include <unistd.h>
+#include <stdio.h>
 
 int	VALID_STR(char *str, char *base)
 {
@@ -91,9 +91,9 @@ int	ft_atoi_base(char *str, char *base)
 	write (1, "check your code", 15);	
 }
 
-/* int main()
+int main()
 {
 	char str[] = "2A";
 	char base[] = "0123456789ABCDEF";
 	printf("%d", ft_atoi_base(str, base));
-} */
+}
