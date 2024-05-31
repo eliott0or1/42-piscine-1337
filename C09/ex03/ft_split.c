@@ -38,18 +38,6 @@ int	ft_countword(char *str, char *sep)
 	return (word);
 }
 
-int	ft_strlen(char *str)
-{
-	int	len;
-
-	len = 0;
-	while (str[len])
-	{
-		len++;
-	}
-	return (len);
-}
-
 char	*ft_strdup(char *str, int *index, char *sep)
 {
 	char	*word;
