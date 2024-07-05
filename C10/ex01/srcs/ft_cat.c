@@ -1,7 +1,6 @@
 #include <unistd.h>
 #include <errno.h>
 #include <fcntl.h>
-#include <string.h>
 
 #define S_BUFFER 3000
 char	buffer[S_BUFFER];
